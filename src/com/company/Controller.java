@@ -14,11 +14,11 @@ public class Controller {
         postList = new ArrayList<Post>();
     }
 
-    public void add(Post post) {
+    public void addPost(Post post) {
         postList.add(post);
     }
 
-    public Post get(long id) {
+    public Post getPost(long id) {
         for (Post post : postList) {
             if (post.getId() == id) {
                 return post;
@@ -27,23 +27,47 @@ public class Controller {
         return null;
     }
 
-    public void remove(long id) {
-        Post post = get(id);
+    public void removePost(long id) {
+        Post post = getPost(id);
         if (post == null) {
-            throw new NullPointerException("The post with id = " + id + " not found");
+            throw new NullPointerException("The item with id = " + id + " not found");
         }
-        remove(post);
+        removePost(post);
     }
 
-    public void remove(Post post) {
+
+    public void removePost(Post post) {
         postList.remove(post);
     }
 
-    public Post getLast() {
+    public Post getLastPost() {
         return postList.isEmpty() ? new Post() : postList.get(postList.size() - 1);
     }
 
-    public List<Post> getList() {
+    public List<Post> getPostList() {
         return postList;
     }
+
+    public void removeComment(Post post, Comment comment) {
+        post.removeComment(comment);
+    }
+
+    public void addComment(Post post, Comment comment) {
+        post.addComment(comment);
+    }
+
+    public Comment getComment(Post post, long idComment) {
+        for (Comment comment : post.getCommentsList()) {
+            if (comment.getId() == idComment) {
+                return comment;
+            }
+        }
+        return null;
+    }
+
+    public Comment getLastComment(Post post) {
+        List<Comment> comments = post.getCommentsList();
+        return comments.isEmpty() ? new Comment() : comments.get(comments.size() - 1);
+    }
 }
+

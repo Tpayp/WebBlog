@@ -2,63 +2,61 @@ package com.company;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Tpayp on 17.11.2014.
  */
 public class Post {
 
-    private long id;
+    public long id;
     private String nickname;
     private String message;
     private Date timestamp;
     private URL image;
+    private List<Comment> commentList;
 
-    public Post() {
-        id = 0;
-        timestamp = new Date();
-    }
+
 
     public Post(Post post)
     {
         this.id = post.getId() + 1;
         this.timestamp = new Date();
     }
+    public Post()
+    {
+        commentList = new ArrayList<Comment>();
+    }
 
-    public long getId() {
+    public long getId()
+    {
         return id;
     }
 
-//    public void setId(long id) {
-//        this.id = id;
-//    }
-
-    public String getNickname() {
+    public String getNickname()
+    {
         return nickname;
     }
 
-    public void setNickname(String nickname) {
+    public void setNickname(String nickname)
+    {
         this.nickname = nickname;
     }
 
-//    public String getMessage() {
-//        return message;
-//    }
-
-    public void setMessage(String message) {
+    public void setMessage(String message)
+    {
         this.message = message;
     }
 
-    public Date getTimestamp() {
+    public Date getTimestamp()
+    {
         return timestamp;
     }
 
-//    public void setTimestamp(Date timestamp) {
-//        this.timestamp = timestamp;
-//    }
-
-    public URL getImage() {
+    public URL getImage()
+    {
         return image;
     }
 
@@ -71,4 +69,18 @@ public class Post {
         }
     }
 
+
+
+    public List<Comment> getCommentsList()
+    {
+        return commentList;
+    }
+
+    public void addComment(Comment comment) {
+        commentList.add(comment);
+    }
+
+    public void removeComment(Comment comment) {
+        commentList.remove(comment);
+    }
 }
