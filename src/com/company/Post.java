@@ -16,7 +16,7 @@ public class Post {
     private String message;
     private Date timestamp;
     private URL image;
-    private List<Comment> commentList;
+    public List<Comment> commentList;
 
 
 
@@ -24,11 +24,14 @@ public class Post {
     {
         this.id = post.getId() + 1;
         this.timestamp = new Date();
+        this.commentList = new ArrayList<>();
     }
     public Post()
     {
         commentList = new ArrayList<Comment>();
     }
+
+
 
     public long getId()
     {

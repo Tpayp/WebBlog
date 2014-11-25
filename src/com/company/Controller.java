@@ -24,17 +24,16 @@ public class Controller {
                 return post;
             }
         }
-        return null;
+        throw new NullPointerException("The item with id = " + id + " not found");
     }
 
     public void removePost(long id) {
         Post post = getPost(id);
-        if (post == null) {
-            throw new NullPointerException("The item with id = " + id + " not found");
-        }
+//        if (post == null) {
+//            throw new NullPointerException("The item with id = " + id + " not found");
+//        }
         removePost(post);
     }
-
 
     public void removePost(Post post) {
         postList.remove(post);
@@ -52,7 +51,8 @@ public class Controller {
         post.removeComment(comment);
     }
 
-    public void addComment(Post post, Comment comment) {
+    public void addComment(long idPost, Comment comment) {
+        Post post = getPost(idPost);
         post.addComment(comment);
     }
 
@@ -64,6 +64,12 @@ public class Controller {
         }
         return null;
     }
+
+    public Comment getLastComment(long idPost) {
+        Post post = getPost(idPost);
+        return getLastComment(post);
+    }
+
 
     public Comment getLastComment(Post post) {
         List<Comment> comments = post.getCommentsList();
